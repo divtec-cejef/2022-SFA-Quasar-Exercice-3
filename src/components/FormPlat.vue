@@ -11,7 +11,9 @@
         filled
         v-model="plat.nom"
         label="Nom (Burger)"
-        class="col" />
+        class="col"
+        :rules="[val => !!val || 'Le nom est obligatoire', val => val.length <= 20 || 'Le nom ne peut faire que 20 caractères maximum']"
+        />
     </div>
 
     <div class="row q-mb-md">
@@ -20,7 +22,8 @@
         v-model="plat.description"
         label="Description"
         type="textarea"
-        class="col" />
+        class="col"
+        :rules="[val => val.length <= 155 || 'La description ne peut faire que 155 caractères maximum']"/>
     </div>
 
     <div class="row q-mb-md">
@@ -57,7 +60,7 @@
     <q-btn
       label="Sauver"
       color="primary"
-      v-close-popup />
+      v-close-popup/>
   </q-card-actions>
 </q-card>
 </template>
