@@ -34,6 +34,7 @@
       color="blue"
       flat>Modifier</q-btn>
     <q-btn
+      @click="supprimerPlat = true"
       icon="delete"
       color="red"
       flat>Supprimer</q-btn>
@@ -43,6 +44,25 @@
     v-model="afficherFormPlat">
     <form-plat action="modifier" />
   </q-dialog>
+  <q-dialog
+    v-model="supprimerPlat">
+    <q-card>
+      <q-card-section class="q-pr-xl">
+        <div class="text-h6 heading">Supprimer le plat</div>
+        <div>Voulez-vous supprimer ce plat ?</div>
+      </q-card-section>
+      <q-card-actions align="right">
+        <q-btn
+          label="Annuler"
+          color="grey"
+          v-close-popup />
+        <q-btn
+          label="Supprimer"
+          color="primary"
+          v-close-popup />
+      </q-card-actions>
+    </q-card>
+  </q-dialog>
 </q-card>
 </template>
 
@@ -51,7 +71,8 @@ export default {
   props: ['plat'],
   data () {
     return {
-      afficherFormPlat: false
+      afficherFormPlat: false,
+      supprimerPlat: false
     }
   },
   components: {

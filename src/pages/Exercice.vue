@@ -52,6 +52,7 @@ Exercice 3 - Vuex & Formulaires
 import { mapGetters } from 'vuex'
 
 export default {
+  name: 'PageExercice',
   components: {
     plat: require('components/Plat.vue').default,
     'bouton-ajouter': require('components/BoutonAjouter.vue').default,
