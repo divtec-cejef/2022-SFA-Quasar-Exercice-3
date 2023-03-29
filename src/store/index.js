@@ -1,5 +1,5 @@
-import {store} from 'quasar/wrappers'
-import {createStore} from 'vuex'
+import { store } from 'quasar/wrappers'
+import { createStore } from 'vuex'
 import solutionPlats from './Solution/store-plats'
 import plats from './store-plats'
 // import example from './module-example'
