@@ -58,6 +58,7 @@
       color="grey"
       v-close-popup />
     <q-btn
+      @click="ajouterPlat(plat)"
       label="Sauver"
       color="primary"
       v-close-popup/>
@@ -66,16 +67,26 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   props: ['action'],
   data () {
     return {
       plat: {
-        name: '',
+        id: 0,
+        nom: '',
         description: '',
         note: 1,
         image: ''
       }
+    }
+  },
+  methods: {
+    ...mapActions('plats', ['ajouterPlat']),
+
+    sauverPlat () {
+      this.ajouterPlat(this.plat)
     }
   }
 }

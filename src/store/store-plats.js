@@ -1,4 +1,5 @@
 // State : données du magasin
+
 const state = {
   plats: [
     {
@@ -41,6 +42,11 @@ const mutations = {
   supprimerPlat (state, id) {
     state.plats = state.plats.filter(plat => (plat.id !== id))
     console.log('Plat supprimé avec succès')
+  },
+  ajouterPlat (state, plat) {
+    plat.id = state.plats[state.plats.length - 1].id + 1
+    state.plats.push(plat)
+    console.log('Plat ajouté avec succès')
   }
 }
 /*
@@ -51,6 +57,10 @@ const actions = {
   supprimerPlat ({ commit }, payload) {
     // Valide la mutation et y passe les données
     commit('supprimerPlat', payload)
+  },
+  ajouterPlat ({ commit }, payload) {
+    // Valide la mutation et y passe les données
+    commit('ajouterPlat', payload)
   }
 }
 
