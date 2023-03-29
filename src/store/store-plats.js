@@ -47,6 +47,13 @@ const mutations = {
     plat.id = state.plats[state.plats.length - 1].id + 1
     state.plats.push(plat)
     console.log('Plat ajouté avec succès')
+  },
+  modifierPlat (state, plat) {
+    const index = state.plats.findIndex(el => el.id === plat.id)
+    if (index !== -1) {
+      Object.assign(state.plats[index], plat)
+    }
+    console.log('Plat modifié avec succès')
   }
 }
 /*
