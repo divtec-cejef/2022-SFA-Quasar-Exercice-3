@@ -34,7 +34,7 @@
       color="blue"
       flat>Modifier</q-btn>
     <q-btn
-      @click="supprimerPlat = true"
+      @click="afficherSupprimerPlat = true"
       icon="delete"
       color="red"
       flat>Supprimer</q-btn>
@@ -45,7 +45,7 @@
     <form-plat action="modifier" />
   </q-dialog>
   <q-dialog
-    v-model="supprimerPlat">
+    v-model="afficherSupprimerPlat">
     <q-card>
       <q-card-section class="q-pr-xl">
         <div class="text-h6 heading">Supprimer le plat</div>
@@ -59,7 +59,8 @@
         <q-btn
           label="Supprimer"
           color="primary"
-          v-close-popup />
+          v-close-popup
+          @click="supprimerPlat(plat.id)"/>
       </q-card-actions>
     </q-card>
   </q-dialog>
@@ -67,16 +68,21 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   props: ['plat'],
   data () {
     return {
       afficherFormPlat: false,
-      supprimerPlat: false
+      afficherSupprimerPlat: false
     }
   },
   components: {
     'form-plat': require('components/FormPlat.vue').default
+  },
+  methods: {
+    ...mapActions('plats', ['supprimerPlat'])
   }
 }
 </script>
