@@ -68,6 +68,10 @@ const actions = {
   ajouterPlat ({ commit }, payload) {
     // Valide la mutation et y passe les données
     commit('ajouterPlat', payload)
+  },
+  modifierPlat ({ commit }, payload) {
+    // Valide la mutation et y passe les données
+    commit('modifierPlat', payload)
   }
 }
 

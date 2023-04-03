@@ -84,7 +84,7 @@ export default {
   },
   mounted () {
     if (this.action === 'modifier') {
-      this.plat = this.platAModifier
+      this.plat = { ...this.platAModifier }
     }
   },
   methods: {
