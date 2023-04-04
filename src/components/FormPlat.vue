@@ -8,6 +8,7 @@
 
     <div class="row q-mb-md">
       <q-input
+        ref="nom"
         filled
         v-model="plat.nom"
         label="Nom (Burger)"
@@ -18,6 +19,7 @@
 
     <div class="row q-mb-md">
       <q-input
+        ref="description"
         filled
         v-model="plat.description"
         label="Description"
@@ -33,7 +35,7 @@
         label="URL de l'image"
         class="col" />
       <q-img
-        :src="plat.image ? plat.image : 'statics/image-placeholder.png'"
+        :src="plat.image ? plat.image : require('../assets/cassoulet.jpg')"
         class="q-ml-sm"
         contain />
     </div>
@@ -61,7 +63,8 @@
       @click="sauverPlat()"
       label="Sauver"
       color="primary"
-      v-close-popup/>
+      v-close-popup
+      :disabled="$refs.description.hasError || $refs.nom.hasError"/>
   </q-card-actions>
 </q-card>
 </template>
@@ -91,6 +94,7 @@ export default {
     ...mapActions('plats', ['ajouterPlat', 'modifierPlat']),
 
     sauverPlat () {
+      // Continuer avec la logique de la méthode si la règle est respectée
       if (this.action === 'modifier') {
         this.modifierPlat(this.plat)
       } else {

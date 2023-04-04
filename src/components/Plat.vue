@@ -1,8 +1,9 @@
 <template>
 <q-card
   class="card">
+
   <q-img
-    :src="plat.image"
+    :src="plat.image ? plat.image : 'https://cherry.img.pmdstatic.net/fit/https.3A.2F.2Fimg.2Egaming.2Egentside.2Ecom.2Farticle.2Fleague-of-legends.2Fcassoulet_c1ae153d8b5d19b4052a41da8227fb5c12a799ff.2Ejpg/640x360/quality/80/cassoulet.jpg'"
     basic
     contain
   >
