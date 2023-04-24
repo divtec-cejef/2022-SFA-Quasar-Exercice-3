@@ -62,9 +62,7 @@
     <q-btn
       @click="sauverPlat()"
       label="Sauver"
-      color="primary"
-      v-close-popup
-      :disabled="$refs.description.hasError || $refs.nom.hasError"/>
+      color="primary"/>
   </q-card-actions>
 </q-card>
 </template>
@@ -92,13 +90,15 @@ export default {
   },
   methods: {
     ...mapActions('plats', ['ajouterPlat', 'modifierPlat']),
-
     sauverPlat () {
-      // Continuer avec la logique de la méthode si la règle est respectée
-      if (this.action === 'modifier') {
-        this.modifierPlat(this.plat)
-      } else {
-        this.ajouterPlat(this.plat)
+      // Vérifie si les règles de validation sont respectées
+      if (!this.$refs.description.hasError && !this.$refs.nom.hasError) {
+        // Modifie ou ajoute le plat
+        if (this.action === 'modifier') {
+          this.modifierPlat(this.plat)
+        } else {
+          this.ajouterPlat(this.plat)
+        }
       }
     }
   }
