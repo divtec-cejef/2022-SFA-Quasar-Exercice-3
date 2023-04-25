@@ -40,7 +40,8 @@ Les mutations ne peuvent pas être asynchrones !!!
  */
 const mutations = {
   /*
-  Renommer les mutations en majuscule afin de ne pas les confondre avec les actions
+  TODO Renommer les mutations en majuscule afin de ne pas les confondre avec les
+   actions
   ajouterPlat (state, plat) ⇒ AJOUTER_PLAT (state, plat)
    */
   supprimerPlat (state, id) {
@@ -87,7 +88,7 @@ Fonctionne comme les propriétés calculées
 Sert à calculer, trier, filtrer ou formater les donneés
  */
 const getters = {
-  /*
+  /* TODO : trier les plats par nom
   * Penser à toujours trier votre retour
   * Retourner une copie et par une référence
 
