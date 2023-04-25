@@ -1,8 +1,9 @@
 <template>
 <q-card
   class="card">
+
   <q-img
-    :src="plat.image"
+    :src="plat.image ? plat.image : require('../assets/cassoulet.jpg')"
     basic
     contain
   >
@@ -22,7 +23,12 @@
   </q-card-section>
 
   <q-card-section class="description">
-    {{ plat.description }}
+    <div v-if="plat.description">
+      {{ plat.description }}
+    </div>
+    <div class="text-italic" v-else>
+      Aucune description fournie
+    </div>
   </q-card-section>
 
   <q-card-actions
@@ -34,6 +40,7 @@
       color="blue"
       flat>Modifier</q-btn>
     <q-btn
+      @click="afficherSupprimerPlat = true"
       icon="delete"
       color="red"
       flat>Supprimer</q-btn>
@@ -41,21 +48,48 @@
 
   <q-dialog
     v-model="afficherFormPlat">
-    <form-plat action="modifier" />
+    <form-plat action="modifier" :platAModifier="plat" />
+  </q-dialog>
+
+  <q-dialog
+    v-model="afficherSupprimerPlat">
+    <q-card>
+      <q-card-section class="q-pr-xl">
+        <div class="text-h6 heading">Supprimer le plat</div>
+        <div>Voulez-vous supprimer ce plat ?</div>
+      </q-card-section>
+      <q-card-actions align="right">
+        <q-btn
+          label="Annuler"
+          color="grey"
+          v-close-popup />
+        <q-btn
+          label="Supprimer"
+          color="primary"
+          v-close-popup
+          @click="supprimerPlat(plat.id)"/>
+      </q-card-actions>
+    </q-card>
   </q-dialog>
 </q-card>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   props: ['plat'],
   data () {
     return {
-      afficherFormPlat: false
+      afficherFormPlat: false,
+      afficherSupprimerPlat: false
     }
   },
   components: {
     'form-plat': require('components/FormPlat.vue').default
+  },
+  methods: {
+    ...mapActions('plats', ['supprimerPlat'])
   }
 }
 </script>
