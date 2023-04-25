@@ -5,7 +5,6 @@
   </q-card-section>
 
   <q-card-section>
-
     <div class="row q-mb-md">
       <q-input
         ref="nom"
@@ -85,15 +84,21 @@ export default {
   },
   mounted () {
     if (this.action === 'modifier') {
+      // Préférer l'utilisation de structuredClone plutôt que de spread operator
+      // this.plat = structuredClone(this.platAModifier)
       this.plat = { ...this.platAModifier }
     }
   },
   methods: {
     ...mapActions('plats', ['ajouterPlat', 'modifierPlat']),
     sauverPlat () {
+      // TODO Exécuter les règles de validation
+      this.$refs.nom.validate()
+      this.$refs.description.validate()
       // Vérifie si les règles de validation sont respectées
       if (!this.$refs.description.hasError && !this.$refs.nom.hasError) {
         // Modifie ou ajoute le plat
+        // TODO Créer une action sauverPlat qui gère l'ajout et la modification
         if (this.action === 'modifier') {
           this.modifierPlat(this.plat)
         } else {
@@ -104,8 +109,12 @@ export default {
   }
 }
 </script>
-
-<style>
+<!--
+  * Ajoute `scoped`
+  * Préférer l'utilisation de Sass ou SCSS https://sass-lang.com/guide
+  * Ajouter `lang="sass"` pour activer Sass
+-->
+<style scoped lang="scss">
 .form-card {
   min-width: 400px;
 }

@@ -39,11 +39,17 @@ Mutations : méthode qui manipulent les données
 Les mutations ne peuvent pas être asynchrones !!!
  */
 const mutations = {
+  /*
+  Renommer les mutations en majuscule afin de ne pas les confondre avec les actions
+  ajouterPlat (state, plat) ⇒ AJOUTER_PLAT (state, plat)
+   */
   supprimerPlat (state, id) {
     state.plats = state.plats.filter(plat => (plat.id !== id))
     console.log('Plat supprimé avec succès')
   },
   ajouterPlat (state, plat) {
+    // TODO : générer un id unique avec
+    // https://quasar.dev/quasar-utils/other-utils#uid-generate-uid
     plat.id = state.plats[state.plats.length - 1].id + 1
     state.plats.push(plat)
     console.log('Plat ajouté avec succès')
@@ -81,8 +87,21 @@ Fonctionne comme les propriétés calculées
 Sert à calculer, trier, filtrer ou formater les donneés
  */
 const getters = {
+  /*
+  * Penser à toujours trier votre retour
+  * Retourner une copie et par une référence
+
+  ``` javascript
+  return [...state.plats].sort((a, b) => a.nom.localeCompare(b.nom, 'fr'))
+  ```
+
+  * Sources
+    * https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+    * https://usefulangle.com/post/227/javascript-sort-array-of-objects
+    * https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
+     */
   plats (state) {
-    return [...state.plats]
+    return structuredClone(state.plats).sort((a, b) => a.nom.localeCompare(b.nom, 'fr'))
   }
 }
 
